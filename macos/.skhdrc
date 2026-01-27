@@ -1,0 +1,93 @@
+# =============================================================================
+# Application Launchers - Basic Apps
+# =============================================================================
+
+# Terminal, Browser, and Finder shortcuts
+alt - 1 : open -akitty                              # Open Kitty terminal
+alt - 2 : open -a"Brave Browser"                    # Open Chrome
+shift + alt - 2 : open -a"Brave Browser" --new      # Open new Chrome window
+# alt - 3 : open -a"Cursor"               # Open VSCode
+# shift + alt - 3 : open -a"Cursor" --new # Open new VSCode window
+alt - 3 : open -a"Antigravity"               # Open VSCode
+shift + alt - 3 : open -a"Antigravity" --new # Open new VSCode window
+alt - 4 : open -aFinder                             # Open Finder
+shift + alt - 4 : open -aFinder --new               # Open new Finder window
+
+# =============================================================================
+# Application Launchers - Quick Access (Q W E Row)
+# =============================================================================
+
+alt - q : open -a"Obsidian"                 # Note-taking app
+alt - w : open -a"Brave Browser"            # Alternative browser
+alt - e : open -a"Microsoft Outlook"        # Email client
+
+# =============================================================================
+# Application Launchers - Development Tools (Z X C Row)
+# =============================================================================
+
+alt - z : open -a"Discord"                  # Video conferencing
+alt - x : open -a"DBeaver"        # Database management
+alt - c : open -a"Postman"                  # API testing tool
+alt - v : open -a"OpenLens"                  # API testing tool
+
+# System monitoring
+shift + ctrl - escape : open -a 'Activity Monitor.app'
+
+# =============================================================================
+# Window Management - Focus and Navigation
+# =============================================================================
+
+# Basic directional focus (vim-style)
+alt - h : yabai -m window --focus west || yabai -m display --focus west
+alt - l : yabai -m window --focus east || yabai -m display --focus east 
+alt - k : yabai -m window --focus north || yabai -m display --focus north
+alt - j : yabai -m window --focus south || yabai -m display --focus south
+
+# Alternative directional focus (arrow keys)
+shift + alt - left : yabai -m window --focus west || yabai -m display --focus west
+shift + alt - right : yabai -m window --focus east || yabai -m display --focus east 
+shift + alt - up : yabai -m window --focus north || yabai -m display --focus north
+shift + alt - down : yabai -m window --focus south || yabai -m display --focus south
+
+# =============================================================================
+# Window Management - Special Actions
+# =============================================================================
+
+# Window state toggles
+shift + alt - f : yabai -m window --toggle zoom-fullscreen ; yabai -m window --toggle float
+shift + alt - a : yabai -m window --toggle float
+shift + alt - c : yabai -m window --toggle sticky
+shift + alt - s : yabai -m window --toggle split
+
+# Quick actions
+shift + alt - z : yabai -m window --focus recent
+shift + alt - v : yabai -m window --warp recent
+shift + alt - d : yabai -m window --display recent
+
+# =============================================================================
+# Window Management - Swapping and Moving
+# =============================================================================
+
+# Swap windows with vim-style keys
+shift + alt - h : yabai -m window --swap west || $(yabai -m window --display west; yabai -m display --focus west)
+shift + alt - j : yabai -m window --swap south || $(yabai -m window --display south; yabai -m display --focus south)
+shift + alt - k : yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north)
+shift + alt - l : yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east)
+
+# =============================================================================
+# Window Management - Resizing
+# =============================================================================
+
+# Resize windows with vim-style keys
+ctrl + alt - h : yabai -m window west --resize right:-20:0 2> /dev/null || yabai -m window --resize right:-20:0
+ctrl + alt - j : yabai -m window north --resize bottom:0:20 2> /dev/null || yabai -m window --resize bottom:0:20
+ctrl + alt - k : yabai -m window south --resize top:0:-20 2> /dev/null || yabai -m window --resize top:0:-20
+ctrl + alt - l : yabai -m window east --resize left:20:0 2> /dev/null || yabai -m window --resize left:20:0
+
+# =============================================================================
+# Space Management
+# =============================================================================
+
+# Move window to specific spaces. Key [ and ]
+alt - 0x21 : yabai -m window --space 1 --focus    # Move to space 1
+alt - 0x1E : yabai -m window --space 4 --focus    # Move to space 4
