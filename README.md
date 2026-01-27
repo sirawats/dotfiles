@@ -2,11 +2,33 @@
 
 Personal macOS / Linux dotfiles
 
+## Table of Contents
+- [Preview](#preview)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+  - [Terminal](#terminal)
+  - [Neovim](#neovim)
+  - [tmux](#tmux)
+  - [CLI Scripts](#cli-scripts)
+  - [macOS](#macos)
+- [Troubleshooting](#troubleshooting)
+
+## Preview
+
+![Terminal Setup](screenshots/terminal.png)
+
+## Prerequisites
+
+- macOS or Linux
+- Git
+- curl
+- **macOS:** [Homebrew](https://brew.sh/)
+- **Linux:** apt or equivalent package manager
 
 ## Install
 
 ```bash
-git clone https://github.com/sirawats/dotfiles.git ~/.dotfiles
+git clone https://github.com/sirawats/dotfiles.git ~/dotfiles
 ```
 
 ## Installation
@@ -26,7 +48,7 @@ git clone https://github.com/sirawats/dotfiles.git ~/.dotfiles
     curl -L https://raw.githubusercontent.com/sirawats/dotfiles/refs/heads/master/kitty/kitty.conf -o kitty.conf
 
     # Color Scheme
-    https://raw.githubusercontent.com/sirawats/dotfiles/refs/heads/master/kitty/moondrop.conf
+    curl -L https://raw.githubusercontent.com/sirawats/dotfiles/refs/heads/master/kitty/moondrop.conf -o moondrop.conf
     ```
   
 - **Shell:** [zsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
@@ -79,6 +101,41 @@ git clone https://github.com/sirawats/dotfiles.git ~/.dotfiles
     ```bash
     curl -fsSL "https://github.com/sirawats/.tmux/raw/refs/heads/master/install.sh#$(date +%s)" | bash
     ```
+
+### CLI Scripts
+
+A collection of utility scripts for common development tasks, accessible via `@command-name` aliases.
+
+- **Setup:**
+  ```bash
+  # Add to your ~/.zshrc or ~/.bashrc
+  source ~/dotfiles/cli_scripts/make-it-short.sh
+  ```
+
+- **Categories:**
+  - **Git Utilities:** Branch management, sync, undo commits
+  - **Python/Conda:** Environment activation, cleanup, management
+  - **npm:** Dependency management, updates, cleanup
+  - **Docker:** Image cleanup and management
+  - **Encoding:** Base64 encode/decode, URL decode
+  - **Generators:** Passwords, UUIDs
+  - **SSH:** Key management, remote access control
+  - **Utilities:** JSON formatting, zsh reload
+
+- **Usage Examples:**
+  ```bash
+  @gen-pw              # Generate 24-char password
+  @gen-pw 32           # Generate 32-char password
+  @git-sync            # Fetch, pull, and prune
+  @npm-clean           # Clean reinstall dependencies
+  @json-pretty data.json  # Pretty-print JSON
+  ```
+
+- **Optional Dependencies:**
+  - `jq` - For better JSON formatting (falls back to python if not available)
+  - `python3` - For JSON formatting fallback
+
+All scripts include help via `-h`, `--help`, or `help` flags.
 
 ### macOS
 - **Tiling Window Manager:** [yabai](https://github.com/asmvik/yabai)
