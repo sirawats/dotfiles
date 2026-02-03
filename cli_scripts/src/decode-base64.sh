@@ -16,7 +16,6 @@ display_help() {
 # Check if the first argument is help
 if [[ "${1:-}" == "help" ]] || [[ "${1:-}" == "-h" ]] || [[ "${1:-}" == "--help" ]]; then
     display_help
-    exit 0
 fi
 
 # Check if input is from pipe or argument
@@ -30,5 +29,4 @@ elif [ "$#" -eq 1 ]; then
 else
     echo "Error: Provide base64 text as argument or via pipe" >&2
     display_help
-    exit 1
 fi

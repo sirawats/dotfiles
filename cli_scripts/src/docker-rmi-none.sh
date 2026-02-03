@@ -12,14 +12,12 @@ display_help() {
 # Check if the first argument is help
 if [[ "${1:-}" == "help" ]] || [[ "${1:-}" == "-h" ]] || [[ "${1:-}" == "--help" ]]; then
     display_help
-    exit 0
 fi
 
 # Check if the number of arguments is correct
 if [ "$#" -gt 0 ]; then
     echo "Error: This script does not take arguments" >&2
     display_help
-    exit 1
 fi
 
 # Get list of dangling images
@@ -27,7 +25,6 @@ dangling_images=$(docker images -a --filter "dangling=true" -q --no-trunc)
 
 if [ -z "$dangling_images" ]; then
     echo "No dangling images found."
-    exit 0
 fi
 
 # Show what will be deleted
@@ -45,5 +42,4 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "Done!"
 else
     echo "Operation cancelled."
-    exit 0
 fi

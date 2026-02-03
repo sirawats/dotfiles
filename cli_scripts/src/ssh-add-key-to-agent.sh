@@ -12,20 +12,17 @@ display_help() {
 # Check if the first argument is help
 if [[ "${1:-}" == "help" ]] || [[ "${1:-}" == "-h" ]] || [[ "${1:-}" == "--help" ]]; then
     display_help
-    exit 0
 fi
 
 # Check if the number of arguments is correct
 if [ "$#" -ne 1 ]; then
     echo "Error: SSH key path is required" >&2
     display_help
-    exit 1
 fi
 
 # Check if the key file exists
 if [ ! -f "$1" ]; then
     echo "Error: Key file '$1' not found" >&2
-    exit 1
 fi
 
 ssh-add "$1"

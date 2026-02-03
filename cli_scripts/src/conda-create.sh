@@ -13,14 +13,12 @@ display_help() {
 # Check if the first argument is 'help'
 if [[ "${1:-}" == "help" ]] || [[ "${1:-}" == "-h" ]] || [[ "${1:-}" == "--help" ]]; then
     display_help
-    exit 0
 fi
 
 # Check if the number of arguments is correct
 if [ "$#" -ne 2 ]; then
     echo "Error: Invalid number of arguments" >&2
     display_help
-    exit 1
 fi
 
 # Assign arguments to variables

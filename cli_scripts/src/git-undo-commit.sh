@@ -14,26 +14,22 @@ display_help() {
 # Check if the first argument is help
 if [[ "${1:-}" == "help" ]] || [[ "${1:-}" == "-h" ]] || [[ "${1:-}" == "--help" ]]; then
     display_help
-    exit 0
 fi
 
 # Check if no arguments provided
 if [ "$#" -ne 0 ]; then
     echo "Error: This script does not take arguments" >&2
     display_help
-    exit 1
 fi
 
 # Check if we're in a git repository
 if ! git rev-parse --git-dir > /dev/null 2>&1; then
     echo "Error: Not in a git repository" >&2
-    exit 1
 fi
 
 # Check if there are any commits
 if ! git rev-parse HEAD > /dev/null 2>&1; then
     echo "Error: No commits to undo" >&2
-    exit 1
 fi
 
 # Show the commit that will be undone

@@ -11,14 +11,12 @@ display_help() {
 # Check if the first argument is help
 if [[ "${1:-}" == "help" ]] || [[ "${1:-}" == "-h" ]] || [[ "${1:-}" == "--help" ]]; then
     display_help
-    exit 0
 fi
 
 # Check if the number of arguments is correct
 if [ "$#" -gt 0 ]; then
     echo "Error: This script does not take arguments" >&2
     display_help
-    exit 1
 fi
 
 # Show what will be deleted
@@ -27,7 +25,6 @@ cache_files=$(find . -type f -name '*.py[co]' -o -type d -name __pycache__)
 
 if [ -z "$cache_files" ]; then
     echo "No Python cache files found."
-    exit 0
 fi
 
 echo "The following will be deleted:"
@@ -44,7 +41,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "Done!"
 else
     echo "Operation cancelled."
-    exit 0
 fi
 
 

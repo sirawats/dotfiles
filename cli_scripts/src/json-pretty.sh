@@ -18,14 +18,12 @@ display_help() {
 # Check if the first argument is help
 if [[ "${1:-}" == "help" ]] || [[ "${1:-}" == "-h" ]] || [[ "${1:-}" == "--help" ]]; then
     display_help
-    exit 0
 fi
 
 # Check if too many arguments
 if [ "$#" -gt 1 ]; then
     echo "Error: Too many arguments" >&2
     display_help
-    exit 1
 fi
 
 # Determine which JSON tool to use
@@ -40,7 +38,6 @@ elif command -v python &> /dev/null; then
     json_tool="python -m json.tool"
 else
     echo "Error: No JSON formatter found (jq or python required)" >&2
-    exit 1
 fi
 
 # Process input
@@ -51,7 +48,6 @@ else
     # Read from file
     if [ ! -f "$1" ]; then
         echo "Error: File '$1' not found" >&2
-        exit 1
     fi
     cat "$1" | eval "$json_tool"
 fi

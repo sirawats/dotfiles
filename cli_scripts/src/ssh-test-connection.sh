@@ -16,14 +16,12 @@ display_help() {
 # Check if the first argument is help
 if [[ "${1:-}" == "help" ]] || [[ "${1:-}" == "-h" ]] || [[ "${1:-}" == "--help" ]]; then
     display_help
-    exit 0
 fi
 
 # Check if the number of arguments is correct
 if [ "$#" -ne 1 ]; then
     echo "Error: Hostname is required" >&2
     display_help
-    exit 1
 fi
 
 ssh -T "$1"
