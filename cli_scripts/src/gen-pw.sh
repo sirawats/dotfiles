@@ -10,24 +10,21 @@ display_help() {
     echo "  help|-h|--help: Display this help message"
 }
 
-# Check if the first argument is 'help'
+# Main logic
 if [[ "${1:-}" == "help" ]] || [[ "${1:-}" == "-h" ]] || [[ "${1:-}" == "--help" ]]; then
     display_help
-fi
-
-# Check if the number of arguments is correct
-if [ "$#" -gt 1 ]; then
+elif [ "$#" -gt 1 ]; then
     echo "Error: Too many arguments" >&2
     display_help
+else
+    # Default to 24 characters if no argument provided
+    length="${1:-24}"
+
+    # Validate that argument is a positive integer between 1 and 1024
+    if ! [[ "$length" =~ ^[0-9]+$ ]] || [ "$length" -lt 1 ] || [ "$length" -gt 1024 ]; then
+        echo "Error: Password length must be a number between 1 and 1024" >&2
+    else
+        LC_CTYPE=C && LANG=C && tr -dc 'A-Za-z0-9!?%=' < /dev/urandom | head -c "$length"
+        echo ""  # Add newline at the end
+    fi
 fi
-
-# Default to 24 characters if no argument provided
-length="${1:-24}"
-
-# Validate that argument is a positive integer between 1 and 1024
-if ! [[ "$length" =~ ^[0-9]+$ ]] || [ "$length" -lt 1 ] || [ "$length" -gt 1024 ]; then
-    echo "Error: Password length must be a number between 1 and 1024" >&2
-fi
-
-LC_CTYPE=C && LANG=C && tr -dc 'A-Za-z0-9!?%=' < /dev/urandom | head -c "$length"
-echo ""  # Add newline at the end
