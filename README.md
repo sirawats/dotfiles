@@ -55,23 +55,43 @@ git clone https://github.com/sirawats/dotfiles.git ~/dotfiles
   ```bash
   brew install zsh # macOS
   chsh -s $(which zsh) # change default shell
-  apt install zsh # linux
+  sudo pacman -S zsh # arch linux
+  apt install zsh # debian/ubuntu
   ```
 
-  - **Configuration Framework:** [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
+  - **Quick Install** (Oh-My-Zsh + plugins + theme + dotfiles):
     ```bash
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    bash ~/dotfiles/zsh/install.sh
     ```
-    
-  - **Zsh Theme:** [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
-    ```bash
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-    ```
-  - **Configuration:**
+
+  - **What's included:**
+    - **Framework:** [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
+    - **Theme:** [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
+    - **Plugins:**
+      - `sudo` — press `Esc` twice to toggle sudo
+      - `git` — git aliases (`gst`, `gco`, `gaa`, etc.)
+      - `cp` — `cpv` for copy with progress via rsync
+      - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) — fish-like suggestions
+      - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) — command line coloring
+      - [zsh-256color](https://github.com/chrissicool/zsh-256color) — enhanced 256-color support
+
+  - **UX Enhancements** (`zsh/functions/` — loaded automatically):
+    - [fzf](https://github.com/junegunn/fzf) — fuzzy finder keybindings (`Ctrl-R`, `Ctrl-T`, `Alt-C`) + aliases:
+      - `ffcd` — fuzzy cd into a directory
+      - `ffe` — fuzzy find and edit a file
+      - `ffec` — fuzzy search file contents and edit
+      - `ffch` — fuzzy search command history
+    - [bat](https://github.com/sharkdp/bat) — replaces `cat` with syntax highlighting, colorizes `--help`
+    - [eza](https://github.com/eza-community/eza) — modern `ls` with icons:
+      - `l` / `ls` / `ll` / `ld` / `lt`
+
+  - **Manual Configuration** (if not using the install script):
     ```bash
     curl -L https://raw.githubusercontent.com/sirawats/dotfiles/refs/heads/master/zsh/.zshrc -o ~/.zshrc
     curl -L https://raw.githubusercontent.com/sirawats/dotfiles/refs/heads/master/zsh/.profile -o ~/.profile
     ```
+
+  > **Note:** This setup works standalone on any macOS/Linux system. On [HyDE](https://github.com/HyDE-Project/HyDE) (Arch Linux), it integrates seamlessly — HyDE auto-injects its own plugins and deduplicates with yours.
 
 ### Neovim
 
@@ -84,11 +104,11 @@ git clone https://github.com/sirawats/dotfiles.git ~/dotfiles
   - **Configuration:**
     ```bash
     # Configuration
-    curl -L https://raw.githubusercontent.com/sirawats/dotfiles/refs/heads/master/neovim/config/keymaps.lua -o ~/.config/nvim/config/keymaps.lua
-    curl -L https://raw.githubusercontent.com/sirawats/dotfiles/refs/heads/master/neovim/config/options.lua -o ~/.config/nvim/config/options.lua
+    curl -L https://raw.githubusercontent.com/sirawats/dotfiles/refs/heads/master/neovim/lua/config/keymaps.lua -o ~/.config/nvim/lua/config/keymaps.lua
+    curl -L https://raw.githubusercontent.com/sirawats/dotfiles/refs/heads/master/neovim/lua/config/options.lua -o ~/.config/nvim/lua/config/options.lua
     
     # Plugins
-    curl -L https://raw.githubusercontent.com/sirawats/dotfiles/refs/heads/master/neovim/lua/plugins.lua -o ~/.config/nvim/lua/plugins.lua
+    curl -L https://raw.githubusercontent.com/sirawats/dotfiles/refs/heads/master/neovim/lua/plugins/user.lua -o ~/.config/nvim/lua/plugins/user.lua
     ```
 
 ### tmux

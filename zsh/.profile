@@ -1,5 +1,4 @@
 # Aliases
-source $HOME/dotfiles/cli_scripts/make-it-short.sh
-alias claude="/Users/sirawats/.claude/local/claude"
+[[ -f "$HOME/dotfiles/cli_scripts/make-it-short.sh" ]] && source "$HOME/dotfiles/cli_scripts/make-it-short.sh"
 
 # Credentials
